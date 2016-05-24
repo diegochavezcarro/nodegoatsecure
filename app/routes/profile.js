@@ -44,10 +44,16 @@ function ProfileHandler(db) {
 
                 // WARN: Applying any sting specific methods here w/o checking type of inputs could lead to DoS by HPP
                 //firstName = firstName.trim();
-                user.updateSuccess = true;
-                user.userId = userId;
+                //user.updateSuccess = true;
+                //user.userId = userId;
 
-                return res.render("profile", user);
+                //return res.render("profile", user);
+                profile.getByUserId(parseInt(userId), function(err, doc) {
+                    if (err) return next(err);
+                    doc.userId = userId;
+                    doc.updateSuccess = true;
+                    return res.render("profile", doc);
+                });
             }
         );
 
