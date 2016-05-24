@@ -3,6 +3,7 @@
 var express = require("express");
 var favicon = require("serve-favicon");
 var bodyParser = require("body-parser");
+var validator  = require('express-validator');
 var session = require("express-session");
 // var csrf = require('csurf');
 var consolidate = require("consolidate"); // Templating library adapter for Express
@@ -74,6 +75,13 @@ MongoClient.connect(config.db, function(err, db) {
         // Mandatory in Express v4
         extended: false
     }));
+    app.use(validator());
+    app.use(function(req, res, next) {
+        for (var item in req.body) {
+            req.sanitize(item).escape();
+        }
+        next();
+    });
 
     // Enable session management using express middleware
     app.use(session({
@@ -126,11 +134,11 @@ MongoClient.connect(config.db, function(err, db) {
     // Template system setup
     swig.setDefaults({
         // Autoescape disabled
-        autoescape: false
-            /*
+        //autoescape: false
+            
             // Fix for A3 - XSS, enable auto escaping
             autoescape: true // default value
-            */
+            
     });
 
     // Insecure HTTP connection
