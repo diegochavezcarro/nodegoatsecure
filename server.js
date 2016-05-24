@@ -134,8 +134,9 @@ MongoClient.connect(config.db, function(err, db) {
     });
 
     // Insecure HTTP connection
-     //   console.log("Express http server listening on port " + config.port);
     http.createServer(app).listen(3000,  function() {
+        console.log("Express http server listening on port " + 3000);
+    });
 
     
     // Fix for A6-Sensitive Data Exposure
