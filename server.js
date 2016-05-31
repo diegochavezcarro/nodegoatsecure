@@ -140,12 +140,12 @@ MongoClient.connect(config.db, function(err, db) {
             autoescape: true // default value
             
     });
-
+    /*
     // Insecure HTTP connection
     http.createServer(app).listen(3000,  function() {
         console.log("Express http server listening on port " + 3000);
     });
-
+    */
     
     // Fix for A6-Sensitive Data Exposure
     // Use secure HTTPS protocol
