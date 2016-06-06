@@ -50,7 +50,7 @@ MongoClient.connect(config.db, function(err, db) {
     app.use(helmet.noCache());
 
     // Allow loading resources only from white-listed domains
-    app.use(helmet.csp());
+    //app.use(helmet.csp());
 
     // Allow communication only on HTTPS
     app.use(helmet.hsts());
